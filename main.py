@@ -24,7 +24,7 @@ def get_text_messages(message):
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn1 = types.KeyboardButton("Развлечения")
         btn2 = types.KeyboardButton("WEB-камера")
-        btn3 = types.KeyboardButton("Управление")
+        btn3 = types.KeyboardButton("еще не готово")
         back = types.KeyboardButton("Помощь")
         markup.add(btn1, btn2, btn3, back)
         bot.send_message(chat_id, text="Вы в главном меню", reply_markup=markup)
@@ -53,8 +53,8 @@ def get_text_messages(message):
         bot.send_message(chat_id, text="еще не готово...")
     elif ms_text == "WEB-камера":
         bot.send_message(chat_id, text="еще не готово...")
-    elif ms_text == "Управление":
-        bot.send_message(chat_id, text="еще не готово...")
+    elif ms_text == "еще не готово":
+        bot.send_message(chat_id, text="но никто не пришел…")
     elif ms_text == "Помощь" or ms_text == "/help":
         bot.send_message(chat_id, text="Автор: Петрушина Евгения")
         key1 = types.InlineKeyboardMarkup()
