@@ -37,22 +37,34 @@ def get_text_messages(message):
         markup.add(btn1, btn2, back)
         bot.send_message(chat_id, text="Развлечения", reply_markup=markup)
     elif ms_text == "/dog" or ms_text == "Прислать собаку":
-        bot.send_message(chat_id, text="еще не готово...", reply_markup=markup)
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = types.KeyboardButton("Красивую")
+        btn2 = types.KeyboardButton("Смешную")
+        back = types.KeyboardButton("Вернуться в главное меню")
+        markup.add(btn1, btn2, back)
+        bot.send_message(chat_id,  text="Какую собаку?", reply_markup=markup)
+    elif ms_text == "Красивую":
+        img = open('собака4.jpg', 'rb')
+        bot.send_photo(message.chat.id, img)
+    elif ms_text == "Смешную":
+        img = open('собака1.jpg', 'rb')
+        bot.send_photo(message.chat.id, img)
     elif ms_text == "Прислать анекдот":
-        bot.send_message(chat_id, text="еще не готово...", reply_markup=markup)
+        bot.send_message(chat_id, text="еще не готово...")
     elif ms_text == "WEB-камера":
-        bot.send_message(chat_id, text="еще не готово...", reply_markup=markup)
+        bot.send_message(chat_id, text="еще не готово...")
     elif ms_text == "Управление":
-        bot.send_message(chat_id, text="еще не готово...", reply_markup=markup)
+        bot.send_message(chat_id, text="еще не готово...")
     elif ms_text == "Помощь" or ms_text == "/help":
-        bot.send_message(chat_id, text="Автор: Петрушина Евгения",)
+        bot.send_message(chat_id, text="Автор: Петрушина Евгения")
         key1 = types.InlineKeyboardMarkup()
         btn1 = types.InlineKeyboardButton(text="Напишите автору", url="https://t.me/evgptr")
         key1.add(btn1)
-        img = open('собака1.jpg', 'rb')
+        img = open('кот1.jpg', 'rb')
         bot.send_photo(message.chat.id, img, reply_markup=key1)
     else:
         bot.send_message(chat_id, text="Я тебя слышу!!! Ваше сообщение: "
                                    + ms_text)
 bot.polling(none_stop=True, interval=0)
+
 
