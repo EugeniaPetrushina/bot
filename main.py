@@ -20,10 +20,11 @@ def get_text_messages(message):
     chat_id = message.chat.id
     ms_text = message.text
 
-    if ms_text == "👋 Главное меню" or ms_text == "Главное меню" or ms_text == "Вернуться в главное меню":
+    if ms_text == "👋 Главное меню" or ms_text == "Главное меню" or ms_text == "Вернуться в главное меню" \
+            or ms_text == "главное меню":
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn1 = types.KeyboardButton("Развлечения")
-        btn2 = types.KeyboardButton("WEB-камера")
+        btn2 = types.KeyboardButton("1 Урок")
         btn3 = types.KeyboardButton("еще не готово")
         back = types.KeyboardButton("Помощь")
         markup.add(btn1, btn2, btn3, back)
@@ -50,9 +51,9 @@ def get_text_messages(message):
         img = open('собака1.jpg', 'rb')
         bot.send_photo(message.chat.id, img)
     elif ms_text == "Прислать анекдот":
-        bot.send_message(chat_id, text="еще не готово...")
-    elif ms_text == "WEB-камера":
-        bot.send_message(chat_id, text="еще не готово...")
+        bot.send_message(chat_id, text="- Блин! - сказал слон, наступив на колобка.")
+    elif ms_text == "1 Урок":
+        bot.send_message(chat_id, text="еще не готово))")
     elif ms_text == "еще не готово":
         bot.send_message(chat_id, text="но никто не пришел…")
     elif ms_text == "Помощь" or ms_text == "/help":
