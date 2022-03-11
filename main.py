@@ -19,23 +19,7 @@ def start(message, res=False):
                      text="Привет, {0.first_name}! Я тестовый бот для курса программирования на языке Пайтон".format(
                          message.from_user))
 
-def get_anekdot():
-    array_anekdots = []
-    req_anek = requests.get('http://anekdotme.ru/random')
-    soup = bs4.BeautifulSoup(req_anek.text, "html.parser")
-    result_find = soup.select('.anekdot_text')
-    for result in result_find:
-        array_anekdots.append(result.getText().strip())
-    return array_anekdots[0]
 
-def get_fact():
-    array_facts = []
-    req_fact = requests.get('https://vtopetop.ru')
-    soup = bs4.BeautifulSoup(req_fact.text, "html.parser")
-    result_find = soup.select('.news-article__description item__text')
-    for result in result_find:
-        array_facts.append(result.getText().strip())
-    return array_facts[0]
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
@@ -50,7 +34,7 @@ def get_text_messages(message):
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         btn1 = types.KeyboardButton("Развлечения")
         btn2 = types.KeyboardButton("1 Урок")
-        btn3 = types.KeyboardButton("еще не готово")
+        btn3 = types.KeyboardButton("Сгенерировать пароль")
         back = types.KeyboardButton("Помощь")
         markup.add(btn1, btn2, btn3, back)
         bot.send_message(chat_id, text="Вы в главном меню", reply_markup=markup)
@@ -66,8 +50,7 @@ def get_text_messages(message):
     elif ms_text == "1 Урок":
         bot.send_message(chat_id, text="еще не готово))")
 
-    elif ms_text == "еще не готово":
-        bot.send_message(chat_id, text="но никто не пришел…")
+    elif ms_text == "Сгенерировать пароль":
         bot.send_message(chat_id, text=get_fact())
 
     elif ms_text == "Помощь" or ms_text == "/help":
@@ -121,6 +104,28 @@ def get_text_messages(message):
     else:
         bot.send_message(chat_id, text="Я тебя слышу!!! Ваше сообщение: "
                                        + ms_text)
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+def get_anekdot():
+    array_anekdots = []
+    req_anek = requests.get('http://anekdotme.ru/random')
+    soup = bs4.BeautifulSoup(req_anek.text, "html.parser")
+    result_find = soup.select('.anekdot_text')
+    for result in result_find:
+        array_anekdots.append(result.getText().strip())
+    return array_anekdots[0]
+
+
+def get_fact():
+    array_facts = []
+    req_fact = requests.get('https://randstuff.ru/password/')
+    soup = bs4.BeautifulSoup(req_fact.text, "html.parser")
+    result_find = soup.select('.cur')
+    for result in result_find:
+        array_facts.append(result.getText().strip())
+    return array_facts[0]
 
 
 # ----------------------------------------------------------------------------------------------------------------------
